@@ -1,0 +1,20 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'greetings/style.css' %}">
+
+<p>List of fav TV shows:<br></p>
+{% if greeting_list %}
+    <ul>
+    {% for greeting in greeting_list %}
+        <li>
+          {{ greeting.message }}
+          <span><a href="{% url 'greetings:update' greeting.id %}">edit</a></span>
+          <span><a href="{% url 'greetings:delete' greeting.id %}">delete</a></span>
+        </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No greetings are available.</p>
+{% endif %}
+<span><a href="{% url 'greetings:new_page' %}"><br> New page</a></span>
+<span><a href="{% url 'greetings:create' %}">Add new TV show<br></a></span>
+
